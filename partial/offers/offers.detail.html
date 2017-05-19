@@ -1,0 +1,168 @@
+<div>
+  <div class="ui padded grid equal width">
+    <div class="row">
+      <div class="black column three wide">
+        <div class="ui segment inverted center aligned">
+          <p class="filter-header ui header app-header">Travel Finder</p>
+
+          <div class="field left">
+            <div class="ui dividing header inverted"></div>
+            <a ui-sref="home" class="ui inverted black button">
+              <i class="icon backward"></i>
+              Back
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui segment mb-md">
+          <h1 class="ui center aligned header">{{offer.name}}</h1>
+        </div>
+        <div class="ui grid">
+          <div class="eight wide column">
+            <img class="ui fluid rounded image" src="{{offer.img}}">
+          </div>
+          <div class="eight wide column search-flight-form">
+            <div class="ui teal dividing large header">
+              <div class="content">
+                Check your flight
+              </div>
+            </div>
+
+            <form class="ui form">
+              <div class="ui grid">
+                <div class="eight wide column">
+                  <div class="ui search field">
+                    <div class="ui icon input" data-content="Departure airport">
+                      <input type="hidden" name="travelstarthidden">
+                      <input class="prompt" type="text" id="travel-start" name="flightorigin" ng-model="offer.flight.origin" placeholder="Luxembourg">
+                      <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                  </div>
+                </div>
+                <div class="eight wide column">
+                  <div class="ui search field">
+                    <div class="ui icon input" data-content="Arrival airport">
+                      <input type="hidden" name="travelendhidden">
+                      <input class="prompt" type="text" id="travel-end" name="flightdestination" ng-model="offer.flight.destination" placeholder="Destination">
+                      <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui grid">
+                <div class="eight wide column">
+                  <div class="ui input icon field" data-content="Departure date">
+                    <input type="text" class="travel-date" name="flightdatestart" id="travel-date-start" placeholder="From" ng-model="departairport">
+                    <i class="calendar icon"></i>
+                  </div>
+                </div>
+                <div class="eight wide column">
+                  <div class="ui input icon field" data-content="Departure end">
+                    <input type="text" class="travel-date" name="flightdateend" id="travel-date-end" placeholder="To" ng-model="destiairport">
+                    <i class="calendar icon"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui grid mb-md">
+                <div class="eight wide column">
+                  <div class="ui input">
+                    <button class="ui primary button" ng-click="getFlights()" id="search-flight">Search</button>
+                  </div>
+                </div>
+              </div>
+              <div class="ui error message"></div>
+            </form>
+          </div>
+        </div>
+
+        <div class="ui grid">
+          <div class="wide column">
+            <div class="flights-info mt-lg mb-lg" ng-show="hasResults">
+
+              <div class="ui horizontal statistics">
+                <div class="orange statistic">
+                  <div class="value"><i class="plane icon"></i> {{flights.length}}</div>
+                  <div class="label">
+                    Flights
+                  </div>
+                </div>
+              </div>
+              <div class="ui divider mt-none"></div>
+
+              <table class="ui fixed table mt-md">
+                <!--
+                <thead>
+                  <tr><th>Name</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                -->
+                <tbody>
+                  <tr ng-repeat="flight in flights | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+                    <td>{{flight.saleTotal.replace("EUR", "") | currency : "€ "}}</td>
+                    <td>{{flight.slice[0].segment[0].leg[0].departureTime | date}} - {{flight.slice[0].segment[0].leg[0].arrivalTime | date}}</td>
+                    <td>{{flight.slice[0].duration}} minutes</td>
+                    <td>Escale</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="ui icon buttons">
+                <button class="ui button" ng-click="pagination.prevPage()"><i class="backward icon"></i></button>
+                <!--
+                <button class="ui button" ng-class="{active: n == pagination.page}" ng-repeat="n in [] | range: pagination.numPages">
+                  <span ng-click="pagination.toPageId(n)">{{n + 1}}</span>
+                </button>
+                -->
+                <button class="ui button" ng-click="pagination.nextPage()"><i class="forward icon"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui grid">
+          <div class="eight wide column">
+            <div class="ui divided very relaxed animated list mt-lg massive offer-detail mb-lg">
+              <div class="item">
+                <i class="marker icon"></i>
+                <div class="content">
+                  <div class="header">Place</div>
+                  <div class="description">{{offer.place}}</div>
+                </div>
+              </div>
+              <div class="item">
+                <i class="tag icon"></i>
+                <div class="content">
+                  <div class="header">Price</div>
+                  <div class="description">{{offer.price | currency : "€ "}}</div>
+                </div>
+              </div>
+              <div class="item">
+                <i class="calendar icon"></i>
+                <div class="content">
+                  <div class="header">Date</div>
+                  <div class="description">{{offer.date || "Unknown"}}</div>
+                </div>
+              </div>
+              <div class="item">
+                <i class="linkify icon"></i>
+                <div class="content">
+                  <div class="header">Link</div>
+                  <div class="description">
+                    <a ng-href="{{offer.link}}" target="_blank">{{offer.source}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'Dancing Script';
+  src: url(../fonts/DancingScript-Regular.ttf);
+}
+
+.mb-md { margin-bottom: 30px !important; }
+
+.mb-lg { margin-bottom: 50px !important; }
+
+.mt-none { margin-top: 0 !important; }
+
+.mt-xs { margin-top: 10px !important; }
+
+.mt-md { margin-top: 30px !important; }
+
+.mt-lg { margin-top: 50px !important; }
+
+.ui.header.app-header { 
+  font-family: 'Dancing Script', Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 4rem;
+  color: #f35626;
+  background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 60s infinite linear;
+}
+
+p.ui.header.app-header { font-size: 2rem; }
+
+.offer-container { margin-top: 50px; }
+
+.offer-container .ui.active.inverted.dimmer {
+  height: calc(100% - 94px);
+  top: 94px !important;
+}
+
+.black.column { min-height: 100vh; }
+
+.black.column .filter-header {
+  font-size: 4rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+.offer-counter { font-size: 20px; }
+
+.card .image img { max-height: 191px; }
+
+.content .ui.button { padding: .78571429em 1em; }
+
+.search-flight-form .ui.input { width: 100%; }
+
+.search-flight-form .ui.header { margin-bottom: 30px; }
+
+.search-flight-form .search input.prompt { border-radius: 4px; }
+
+.field.left { text-align: left; }
+
+.card-container.ng-enter {
+  transition: opacity ease-in-out 0.5s;
+  opacity: 0;
+}
+
+.card-container.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.ng-leave {
+  opacity: 1;
+}
+
+.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+
+/* #############################
+            Animation
+   ############################# */
+
+@-webkit-keyframes hue {
+  from { -webkit-filter: hue-rotate(0deg); }
+  to { -webkit-filter: hue-rotate(-360deg); }
+}

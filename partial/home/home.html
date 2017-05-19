@@ -1,0 +1,104 @@
+<div>
+  <div class="ui padded grid equal width">
+    <div class="row">
+      <div class="black column three wide">
+        <div class="ui segment inverted center aligned">
+          <p class="filter-header">Filter</p>
+        </div>
+
+        <div class="ui form inverted">
+          <div class="field">
+            <div class="ui dividing header inverted">
+              <i class="sort icon"></i>
+              <div class="content">
+                Sort
+              </div>
+            </div>
+            <select class="ui search dropdown inverted" ng-model="filter" ng-change="sortBy(filter)">
+              <option value="">Select filter</option>
+              <option value="pasc">Price ASC</option>
+              <option value="pdesc">Price DESC</option>
+            </select>
+          </div>
+
+          <div class="field mt-lg">
+            <div class="ui dividing header inverted">
+              <i class="money icon"></i>
+              <div class="content">
+                Budget
+              </div>
+            </div>
+            <input type="text" id="rangeslider" name="rangeslider" />
+          </div>
+
+          <div class="field mt-lg">
+            <div class="ui dividing header inverted">
+              <i class="calendar icon"></i>
+              <div class="content">
+                Period
+              </div>
+            </div>
+            <div class="ui input">
+              <input type="text" id="periodpicker" placeholder="Select a date range">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui segment">
+          <h1 class="ui center aligned header app-header">Travel Finder</h1>
+        </div>
+
+        <div class="offer-container">
+          <div class="ui container">
+            <div class="" ng-hide="offersLoaded">
+              <div class="ui active inverted dimmer">
+                <div class="ui text loader">Loading</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui three column doubling stackable grid container">
+            <div class="ui horizontal divider">
+              <span class="offer-counter"><span class="timecounter"></span> / {{allOffers.length}}</span>
+            </div>
+
+            <div class="ui link cards centered mt-lg">
+              <div class="card" ng-repeat="offer in offers">
+                <div class="image">
+                  <img ng-src="{{offer.img || imgPlaceHolder}}">
+                </div>
+                <div class="content">
+                  <div class="header"><a ng-href="{{offer.link}}" target="_blank">{{offer.name}}</a></div>
+                  <div class="meta">{{offer.source}}</div>
+                  <div class="description">
+                    {{offer.place}}
+                  </div>
+                  <a class="ui button mt-xs" ui-sref="offer({offerId: {{offer.id}}})">
+                    <i class="plane icon"></i> More
+                  </a>
+                </div>
+                <div class="extra content">
+                  <span class="right floated">
+                    {{offer.date._i}}
+                  </span>
+                  <span>
+                    <i class="tag icon"></i>
+                    {{offer.price | currency:"€"}}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="ui container" ng-if="offers.length === 0">
+              <div class="ui massive warning message">
+                There is no offer!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui container"></div>
+</div>
