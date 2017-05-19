@@ -63,7 +63,7 @@ app.service('OfferService', function($http, StorageService) {
 
   return {
     getOffers: function() {
-      return $http.get('data/load-offers.php').then(
+      return $http.get('data/testdata.php').then(
         function(response) {
           var splitOutput, tmpString, results;
 
