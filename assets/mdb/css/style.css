@@ -5,3 +5,14 @@ h3.brand-name {
   font-size: 4.5rem;
   font-weight: 500;
 }
+
+.details-wrapper { margin-top: 100px; }
+
+/*
+.creative-lp .md-pills.pills-primary .nav-item .nav-link.active { 
+  background-color: #00bcd4;
+  color: #fff;
+  border-radius: 2px;
+  transition: all 0.4s;
+}
+*/
